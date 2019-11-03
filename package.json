@@ -1,0 +1,18 @@
+{
+  "name": "jogo-da-forca",
+  "version": "1.0.0",
+  "main": "main.js",
+  "license": "MIT",
+  "dependencies": {
+    "mongoose": "^5.7.1",
+    "nodemon": "^1.19.2",
+    "restify": "^8.4.0",
+    "restify-errors": "^8.0.1"
+  },
+  "devDependencies": {
+    "@types/mongoose": "^5.5.17",
+    "@types/node": "^12.7.5",
+    "@types/restify": "^8.4.0",
+    "@types/restify-errors": "^4.3.3"
+  }
+}
