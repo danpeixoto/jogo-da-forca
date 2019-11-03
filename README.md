@@ -1,4 +1,4 @@
-# Backend Jogo da Forca
+# Backend Jogo da Forca [![Codacy Badge](https://api.codacy.com/project/badge/Grade/abf64262d16f43229a6ed422a3bea136)](https://www.codacy.com/manual/Pextre/jogo-da-forca?utm_source=github.com&amp;utm_medium=referral&amp;utm_content=Pextre/jogo-da-forca&amp;utm_campaign=Badge_Grade)
 
 ## Pré-requisitos
 Para conseguir rodar os códigos typescript é necessario instalá-lo. Segue o link de instalação [typescript](http://www.typescriptlang.org/).
