@@ -1,11 +1,8 @@
 {
   "name": "jogo-da-forca",
   "version": "1.0.0",
-  "main": "main.js",
+  "main": "/dist/main.js",
   "license": "MIT",
-  "scripts": {
-    "build": "[my-framework] build --output public"
-  },
   "dependencies": {
     "mongoose": "^5.7.1",
     "nodemon": "^1.19.2",

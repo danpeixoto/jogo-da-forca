@@ -14,35 +14,29 @@ class CompetitionRouter extends Router {
 
         application.get('/competitions', (req, res, next) => {
 
-            Competition.find().then(competitions => {
+            Competition.find()
+                .populate("players")
+                .then(competitions => {
 
-                res.json(competitions);
-                return next();
+                    res.json(competitions);
+                    return next();
 
-            }).catch(next);
-
+                }).catch(next);
         });
 
-        // Retorna pela resposta a competição e todos os documentos dos jogadores nela, ordenados de forma decrescente pelo score
+        // Retorna pela resposta a competição e todos os documentos dos jogadores nela, ordenados de forma crescente pelo score
         application.get('/competitions/:difficulty', (req, res, next) => {
 
             Competition.findOne({ difficulty: req.params.difficulty })
+                .populate({
+                    path: "players", 
+                    options: {
+                        sort: "score"
+                    }
+                })
                 .then(competition => {
 
-                    return Player.find({
-                        _id: { $in: competition.players }
-                    }).then(results => {
-                        console.log(competition)
-                        return { results, competition };
-                    });
-
-                }).then(competitionScoreboard => {
-
-                    competitionScoreboard.results.sort((a: Player, b: Player) => {
-                        return b.score - a.score;
-                    });
-
-                    res.json(competitionScoreboard);
+                    res.json(competition);
                     return next();
 
                 }).catch(next);
