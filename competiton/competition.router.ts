@@ -31,7 +31,7 @@ class CompetitionRouter extends Router {
                 .populate({
                     path: "players", 
                     options: {
-                        sort: "score"
+                        sort: {"score":-1}
                     }
                 })
                 .then(competition => {
