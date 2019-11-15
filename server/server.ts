@@ -1,8 +1,8 @@
-import * as restify from "restify";
 import mongoose from "mongoose";
+import * as restify from "restify";
 import corsMiddleware from "restify-cors-middleware";
-import { Router } from "../common/router";
 import { enviroment } from "../common/enviroment";
+import { Router } from "../common/router";
 
 
 //Classe responsável por inicializar as rotas e o banco de dados da aplicação

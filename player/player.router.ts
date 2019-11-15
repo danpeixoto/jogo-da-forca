@@ -33,9 +33,9 @@ class PlayerRouter extends Router {
 
         application.post('/players', (req, res, next) => {
 
-            if(!req.body.nickname){
+            if (!req.body.nickname) {
                 const generator = new NameGen.Generator("ss");
-                req.body.nickname =  generator.toString();
+                req.body.nickname = generator.toString();
             }
             const player = new Player(req.body);
             player.save().then(newPlayer => {
@@ -46,7 +46,7 @@ class PlayerRouter extends Router {
         });
 
         application.put('/players/:id', (req, res, next) => {
-            const options = { overwrite: false};
+            const options = { overwrite: false };
             Player.update({ _id: req.params.id }, req.body, options).exec()
                 .then(result => {
                     // se o update atualizou algo
@@ -55,7 +55,7 @@ class PlayerRouter extends Router {
                     } else {
                         throw new Error('Document not found.');
                     }
-                }).then(player=>{
+                }).then(player => {
                     res.json(player);
                     return next();
                 }).catch(next)

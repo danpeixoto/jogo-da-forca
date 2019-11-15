@@ -1,17 +1,17 @@
 import mongoose from 'mongoose';
 
-export interface Word extends mongoose.Document{
-    word:string,
-    category:string,
-    tips:Array<string>
+export interface Word extends mongoose.Document {
+    word: string,
+    category: string,
+    tips: Array<string>
 }
 
 // Define a estrutura de um documento no MongoDB
 const wordSchema = new mongoose.Schema({
-    word:{
+    word: {
         type: String,
         required: true,
-        unique:true
+        unique: true
     },
     category: {
         type: String,
@@ -24,4 +24,4 @@ const wordSchema = new mongoose.Schema({
 
 //Cria um modelo baseado no Schema. Cada modelo é responsável pela criação e leitura
 //de documentos do MongoDB
-export const Word = mongoose.model<Word>('Word' , wordSchema);
+export const Word = mongoose.model<Word>('Word', wordSchema);

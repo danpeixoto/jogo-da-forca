@@ -1,8 +1,6 @@
-import * as restify from 'restify';
-import mongoose from 'mongoose';
-import { Router } from '../common/router';
-import { Competition } from './competition.model';
-import { Player } from '../player/player.model';
+import * as restify from "restify";
+import { Router } from "../common/router";
+import { Competition } from "./competition.model";
 
 class CompetitionRouter extends Router {
 
@@ -12,7 +10,7 @@ class CompetitionRouter extends Router {
 
     applyRoutes(application: restify.Server) {
 
-        application.get('/competitions', (req, res, next) => {
+        application.get("/competitions", (req, res, next) => {
 
             Competition.find()
                 .populate("players")
@@ -25,13 +23,13 @@ class CompetitionRouter extends Router {
         });
 
         // Retorna pela resposta a competição e todos os documentos dos jogadores nela, ordenados de forma crescente pelo score
-        application.get('/competitions/:difficulty', (req, res, next) => {
+        application.get("/competitions/:difficulty", (req, res, next) => {
 
             Competition.findOne({ difficulty: req.params.difficulty })
                 .populate({
-                    path: "players", 
+                    path: "players",
                     options: {
-                        sort: {"score":-1}
+                        sort: { "score": -1 }
                     }
                 })
                 .then(competition => {
@@ -43,7 +41,7 @@ class CompetitionRouter extends Router {
 
         });
 
-        application.post('/competitions', (req, res, next) => {
+        application.post("/competitions", (req, res, next) => {
 
             const competition = new Competition(req.body);
             competition.save().then(newCompetition => {
@@ -55,7 +53,7 @@ class CompetitionRouter extends Router {
 
         });
 
-        application.put('/competitions/:difficulty', (req, res, next) => {
+        application.put("/competitions/:difficulty", (req, res, next) => {
 
             const options = { overwrite: false };
             Competition.update({ difficulty: req.params.difficulty }, req.body, options).exec()
@@ -64,7 +62,7 @@ class CompetitionRouter extends Router {
                     if (result.n) {
                         return Competition.findOne({ difficulty: req.params.difficulty })
                     } else {
-                        throw new Error('Competition not Found');
+                        throw new Error("Competition not Found");
                     }
 
                 }).then(competition => {
@@ -72,6 +70,19 @@ class CompetitionRouter extends Router {
                     res.json(competition);
                     return next();
 
+                }).catch(next);
+
+        });
+
+        application.put("/competitions/:difficulty/:id", (req, res, next) => {
+
+            Competition.findOne({ difficulty: req.params.difficulty })
+                .then(competition => {
+                    competition.players.push(req.params.id);
+                    competition.save();
+
+                    res.json(competition);
+                    return next();
                 }).catch(next);
 
         });

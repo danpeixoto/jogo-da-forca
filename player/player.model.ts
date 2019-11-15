@@ -1,17 +1,17 @@
 import mongose from 'mongoose';
 
-export interface Player extends mongose.Document{
-    nickname:string,
-    score:number
+export interface Player extends mongose.Document {
+    nickname: string,
+    score: number
 };
 
 const playerSchema = new mongose.Schema({
-    nickname:{
-        type:String,
-        required:true,
+    nickname: {
+        type: String,
+        required: true,
         unique: true
     },
-    score:{
+    score: {
         type: Number,
         default: 0,
         required: true
@@ -25,4 +25,4 @@ const playerSchema = new mongose.Schema({
 });
 
 
-export const Player = mongose.model<Player>('Player',playerSchema);
+export const Player = mongose.model<Player>('Player', playerSchema);

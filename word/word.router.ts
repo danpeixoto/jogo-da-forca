@@ -1,5 +1,4 @@
 import * as restify from 'restify';
-import mongoose from 'mongoose';
 import { Router } from '../common/router';
 import { Word } from './word.model';
 
@@ -8,7 +7,7 @@ class WordRouter extends Router {
     constructor() {
         super();
     }
-    
+
     //Esse método aplica os métodos do HTTP: POST, GET, PUT
     applyRoutes(application: restify.Server) {
         //application.método(url,(request,response,next)){...}
@@ -20,7 +19,7 @@ class WordRouter extends Router {
 
                 res.json(words);
                 return next();
-                
+
             }).catch(next);
 
         });

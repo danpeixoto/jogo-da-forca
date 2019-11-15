@@ -117,7 +117,7 @@ namespace NameGen {
 	export let FANTASY_S_E = "(syth|sith|srr|sen|yth|ssen|then|fen|ssth|kel|syn|est|bess|inth|nen|tin|cor|sv|iss|ith|sen|slar|ssil|sthen|svis|s|ss|s|ss)(|(tys|eus|yn|of|es|en|ath|elth|al|ell|ka|ith|yrrl|is|isl|yr|ast|iy))(us|yn|en|ens|ra|rg|le|en|ith|ast|zon|in|yn|ys)";
 
 
-	let symbolMap =  {
+	let symbolMap = {
 		s: ['ach', 'ack', 'ad', 'age', 'ald', 'ale', 'an', 'ang', 'ar', 'ard',
 			'as', 'ash', 'at', 'ath', 'augh', 'aw', 'ban', 'bel', 'bur', 'cer',
 			'cha', 'che', 'dan', 'dar', 'del', 'den', 'dra', 'dyn', 'ech', 'eld',
@@ -241,7 +241,7 @@ namespace NameGen {
 			super(GroupTypes.symbol);
 		}
 
-		public add(a:string): void {
+		public add(a: string): void {
 			let g = new Random([]);
 			let symbols = symbolMap[a];
 			if (symbols) {
