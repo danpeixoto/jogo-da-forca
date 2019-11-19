@@ -45,13 +45,13 @@ class PlayerRouter extends Router {
 
         });
 
-        application.put('/players/:id', (req, res, next) => {
+        application.put('/players/:nickname', (req, res, next) => {
             const options = { overwrite: false };
-            Player.update({ _id: req.params.id }, req.body, options).exec()
+            Player.update({ nickname: req.params.nickname }, req.body, options).exec()
                 .then(result => {
                     // se o update atualizou algo
                     if (result.n) {
-                        return Player.findById(req.params.id);
+                        return Player.findById(req.params.nickname);
                     } else {
                         throw new Error('Document not found.');
                     }
