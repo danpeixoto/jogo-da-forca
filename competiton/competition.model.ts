@@ -2,7 +2,7 @@ import mongoose from "mongoose";
 
 export interface Competition extends mongoose.Document {
     difficulty: string,
-    players: [mongoose.Schema.Types.ObjectId]
+    players: [mongoose.Schema.Types.ObjectId],
 };
 
 
@@ -12,11 +12,11 @@ const competitionSchema = new mongoose.Schema({
         default: "moderate",
         required: true,
         enum: ["moderate", "easy", "hard"],
-        unique: true
+        unique: true,
     },
     players: [{
         type: mongoose.Types.ObjectId,
-        ref: "Player"
+        ref: "Player",
     }]
 });
 

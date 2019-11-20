@@ -3,7 +3,7 @@ import mongoose from 'mongoose';
 export interface Word extends mongoose.Document {
     word: string,
     category: string,
-    tips: Array<string>
+    tips: Array<string>,
 }
 
 // Define a estrutura de um documento no MongoDB
@@ -11,14 +11,14 @@ const wordSchema = new mongoose.Schema({
     word: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     category: {
         type: String,
-        required: true
+        required: true,
     },
     tips: [{
-        type: String
+        type: String,
     }]
 });
 

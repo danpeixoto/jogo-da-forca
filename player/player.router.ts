@@ -8,7 +8,7 @@ class PlayerRouter extends Router {
         super();
     }
 
-    applyRoutes(application: restify.Server) {
+    public applyRoutes(application: restify.Server) : void {
 
         application.get('/players', (req, res, next) => {
 

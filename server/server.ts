@@ -7,9 +7,9 @@ import { Router } from "../common/router";
 
 //Classe responsável por inicializar as rotas e o banco de dados da aplicação
 export class Server {
-    application !: restify.Server;
+    public application !: restify.Server;
 
-    initializeDB(): Promise<any> {
+    private initializeDB(): Promise<any> {
         (<any>mongoose).Promise = global.Promise;
         return mongoose.connect(enviroment.db.url, {
             useNewUrlParser: true,
@@ -18,7 +18,7 @@ export class Server {
     }
 
 
-    initRoutes(routers: Router[]): Promise<any> {
+    private initRoutes(routers: Router[]): Promise<any> {
         return new Promise((resolve, reject) => {
             try {
                 this.application = restify.createServer({
@@ -58,7 +58,7 @@ export class Server {
         });
     };
 
-    bootstrap(routers: Router[] = []): Promise<Server> {
+    public bootstrap(routers: Router[] = []): Promise<Server> {
         return this.initializeDB()
             .then(() =>
                 this.initRoutes(routers).then(() => this));

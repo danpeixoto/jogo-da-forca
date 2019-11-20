@@ -8,7 +8,7 @@ class CompetitionRouter extends Router {
         super();
     }
 
-    applyRoutes(application: restify.Server) {
+    public applyRoutes(application: restify.Server): void {
 
         application.get("/competitions", (req, res, next) => {
 
@@ -66,10 +66,9 @@ class CompetitionRouter extends Router {
                     }
 
                 }).then(competition => {
-
+                    competition.players.splice(9);// remove todos os usuarios que estão abaixo da 10ª posição
                     res.json(competition);
                     return next();
-
                 }).catch(next);
 
         });

@@ -2,19 +2,19 @@ import mongose from 'mongoose';
 
 export interface Player extends mongose.Document {
     nickname: string,
-    score: number
+    score: number,
 };
 
 const playerSchema = new mongose.Schema({
     nickname: {
         type: String,
         required: true,
-        unique: true
+        unique: true,
     },
     score: {
         type: Number,
         default: 0,
-        required: true
+        required: true,
     },
     expireAt: {
         type: Date,

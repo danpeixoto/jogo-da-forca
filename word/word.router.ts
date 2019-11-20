@@ -9,7 +9,7 @@ class WordRouter extends Router {
     }
 
     //Esse método aplica os métodos do HTTP: POST, GET, PUT
-    applyRoutes(application: restify.Server) {
+    public applyRoutes(application: restify.Server): void {
         //application.método(url,(request,response,next)){...}
 
         //Retorna como resposta todas as palavras presentes no DB
