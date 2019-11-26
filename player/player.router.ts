@@ -1,6 +1,6 @@
-import * as restify from 'restify';
-import { Router } from '../common/router';
-import { Player } from './player.model';
+import * as restify from "restify";
+import { Router } from "../common/router";
+import { Player } from "./player.model";
 import NameGen from "../common/namegen";
 class PlayerRouter extends Router {
 
@@ -10,7 +10,7 @@ class PlayerRouter extends Router {
 
     public applyRoutes(application: restify.Server) : void {
 
-        application.get('/players', (req, res, next) => {
+        application.get("/players", (req, res, next) => {
 
             Player.find().then(players => {
                 res.json(players);
@@ -20,7 +20,7 @@ class PlayerRouter extends Router {
         });
 
 
-        application.get('/players/:nickname', (req, res, next) => {
+        application.get("/players/:nickname", (req, res, next) => {
 
             const { nickname } = req.params;
 
@@ -31,7 +31,7 @@ class PlayerRouter extends Router {
 
         });
 
-        application.post('/players', (req, res, next) => {
+        application.post("/players", (req, res, next) => {
 
             if (!req.body.nickname) {
                 const generator = new NameGen.Generator("ss");
@@ -45,15 +45,15 @@ class PlayerRouter extends Router {
 
         });
 
-        application.put('/players/:nickname', (req, res, next) => {
+        application.put("/players/:nickname", (req, res, next) => {
             const options = { overwrite: false };
             Player.update({ nickname: req.params.nickname }, req.body, options).exec()
                 .then(result => {
                     // se o update atualizou algo
                     if (result.n) {
-                        return Player.findById(req.params.nickname);
+                        return Player.find({nickname: req.params.nickname});
                     } else {
-                        throw new Error('Document not found.');
+                        throw new Error("Document not found.");
                     }
                 }).then(player => {
                     res.json(player);
