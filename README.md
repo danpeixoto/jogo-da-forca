@@ -69,7 +69,7 @@ http://localhost:3001/competitions
 http://localhost:3001/words/:id
 ```
 ```
-http://localhost:3001/players/:id
+http://localhost:3001/players/:nickname
 ```
 ```
 http://localhost:3001/competitions/:difficulty
