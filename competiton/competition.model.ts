@@ -1,8 +1,9 @@
 import mongoose from "mongoose";
+import { Player } from "../player/player.model";
 
 export interface Competition extends mongoose.Document {
     difficulty: string,
-    players: [mongoose.Schema.Types.ObjectId],
+    players: Array<mongoose.Types.ObjectId>,
 };
 
 
